@@ -1,0 +1,8 @@
+40rty AMS — WebMCP Playground
+Copyright 2026 40rty
+
+This product includes software developed at 40rty (https://40rty.ai).
+
+The WebMCP operator contract in `assets/operator-prompt.js` is mirrored from
+the AMS client SDK so that this page is self-describing to an external agent
+without depending on the embed bundle. Keep the two in sync.

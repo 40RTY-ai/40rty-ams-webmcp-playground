@@ -1,0 +1,230 @@
+/*
+ * Home screen. Steve Madden's own register — near-black, white, tight
+ * uppercase labels, no rounded softness — because the page is an argument
+ * about this brand and it should not look like a developer tool.
+ *
+ * The inspector keeps its own stylesheet and its own namespace.
+ */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+  color: #f5f5f5;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hm-wrap { max-width: 1080px; margin: 0 auto; padding: 56px 24px 120px; }
+
+/* --- masthead --- */
+.hm-brand {
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+.hm-eyebrow {
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin: 0 0 44px;
+}
+
+/* --- the claim --- */
+.hm-h1 {
+  font-size: clamp(34px, 6vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+.hm-h1 em { font-style: normal; color: #8a8a8a; }
+
+.hm-lede {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  color: #c8c8c8;
+  max-width: 60ch;
+  margin: 0 0 14px;
+}
+.hm-lede strong { color: #fff; font-weight: 600; }
+
+/* --- how it works --- */
+.hm-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background: #262626;
+  border: 1px solid #262626;
+  margin: 40px 0 56px;
+}
+.hm-step { background: #0a0a0a; padding: 20px 18px; }
+.hm-step-n {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #6f6f6f;
+  margin: 0 0 9px;
+  text-transform: uppercase;
+}
+.hm-step-t { font-size: 14px; font-weight: 700; margin: 0 0 6px; }
+.hm-step-d { font-size: 13px; line-height: 1.55; color: #9a9a9a; margin: 0; }
+
+/* --- intents --- */
+.hm-ask {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin: 0 0 4px;
+}
+.hm-ask-sub { font-size: 13.5px; color: #9a9a9a; margin: 0 0 22px; }
+
+.hm-intents {
+  display: grid;
+  /* 380px keeps this at two columns in the 1080px container, so the four read
+   * as a 2x2 set rather than a row of three with a straggler. */
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 14px;
+}
+
+.hm-intent {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #131313;
+  color: inherit;
+  border: 1px solid #2b2b2b;
+  padding: 20px;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  transition: background 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+.hm-intent:hover { background: #1c1c1c; border-color: #565656; transform: translateY(-2px); }
+.hm-intent:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.hm-intent-tag {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin: 0 0 10px;
+}
+.hm-intent-text {
+  font-size: 16px;
+  line-height: 1.45;
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+.hm-intent-hint { font-size: 12px; color: #7a7a7a; margin: 0; }
+.hm-intent-go {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  border-bottom: 1px solid #4a4a4a;
+  padding-bottom: 2px;
+}
+
+/* --- other --- */
+.hm-other { margin: 14px 0 0; border: 1px solid #2b2b2b; background: #131313; padding: 20px; }
+.hm-other-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.hm-input {
+  flex: 1 1 260px;
+  min-width: 0;
+  background: #0a0a0a;
+  border: 1px solid #3a3a3a;
+  color: #f5f5f5;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 15px;
+}
+.hm-input::placeholder { color: #666; }
+.hm-input:focus { outline: none; border-color: #fff; }
+.hm-submit {
+  background: #fff;
+  color: #0a0a0a;
+  border: 1px solid #fff;
+  padding: 12px 22px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.hm-submit:hover { background: #d8d8d8; border-color: #d8d8d8; }
+.hm-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* --- footnote --- */
+.hm-foot {
+  margin: 56px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid #262626;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #8a8a8a;
+}
+.hm-foot b { color: #d8d8d8; }
+.hm-foot a { color: #d8d8d8; }
+.hm-foot code {
+  font-family: "Inconsolata", ui-monospace, Menlo, monospace;
+  background: #1c1c1c;
+  padding: 1px 6px;
+  color: #d8d8d8;
+}
+.hm-foot p { margin: 0 0 10px; }
+.hm-foot p:last-child { margin-bottom: 0; }
+
+/* --- guided demo --- */
+.hm-demo { margin: 14px 0 0; border: 1px solid #2b2b2b; background: #131313; padding: 20px; }
+.hm-demo-title { font-size: 19px; font-weight: 700; margin: 0 0 6px; }
+.hm-demo-premise { font-size: 13.5px; line-height: 1.55; color: #9a9a9a; margin: 0 0 16px; max-width: 62ch; }
+.hm-demo-go { display: inline-block; text-decoration: none; }
+.hm-demo-note { font-size: 12px; color: #7a7a7a; margin: 16px 0 10px; }
+
+.hm-demo-beats { list-style: none; margin: 0; padding: 0; counter-reset: beat; }
+.hm-demo-beat { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid #222; }
+.hm-demo-n {
+  flex: none;
+  width: 22px;
+  font-family: "Inconsolata", ui-monospace, Menlo, monospace;
+  font-size: 12px;
+  color: #6f6f6f;
+  padding-top: 2px;
+}
+.hm-demo-body { min-width: 0; }
+.hm-demo-say { font-size: 14.5px; line-height: 1.45; margin: 0 0 4px; }
+.hm-demo-watch { font-size: 12px; line-height: 1.5; color: #8a8a8a; margin: 0; }
+.hm-demo-copy {
+  background: none;
+  border: 1px solid #3a3a3a;
+  color: #b8b8b8;
+  font: inherit;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  margin-top: 7px;
+  cursor: pointer;
+}
+.hm-demo-copy:hover { border-color: #7a7a7a; color: #fff; }
+
+.hm-demo-steps { list-style: none; margin: 0 0 4px; padding: 0; counter-reset: step; }
+.hm-demo-steps li {
+  position: relative;
+  padding: 0 0 16px 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #9a9a9a;
+}
+.hm-demo-steps li b { color: #e8e8e8; font-weight: 600; }
+.hm-demo-steps .hm-submit { margin-top: 9px; }

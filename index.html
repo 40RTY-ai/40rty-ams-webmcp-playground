@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steve Madden · AMS</title>
+<meta name="description" content="Say what you're actually doing and the Steve Madden storefront composes itself around it. No page existed before your sentence.">
+<link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/inspector.css">
+<link rel="preconnect" href="https://app.40rty.ai" crossorigin>
+</head>
+<body>
+
+<div class="hm-wrap">
+  <p class="hm-brand">Steve Madden</p>
+  <p class="hm-eyebrow">Running on AMS · an agentic merchandising surface</p>
+
+  <h1 class="hm-h1">The store builds<br>itself around <em>you</em>.</h1>
+
+  <p class="hm-lede">
+    This is not search, and it is not a filtered grid. Tell the store what you're
+    <strong>actually doing</strong> — a wedding on a beach, a winter work trip, a gift for someone
+    whose taste you already know — and it composes a storefront for that. <strong>No page existed
+    before your sentence.</strong>
+  </p>
+  <p class="hm-lede">
+    Then keep talking. Every follow-up rebuilds the layout around what changed, in the same
+    conversation. That is the part a catalogue cannot do.
+  </p>
+
+  <div class="hm-steps">
+    <div class="hm-step">
+      <p class="hm-step-n">01</p>
+      <p class="hm-step-t">You say what you're doing</p>
+      <p class="hm-step-d">In your own words. The occasion, the place, the season, the person — not a product name.</p>
+    </div>
+    <div class="hm-step">
+      <p class="hm-step-n">02</p>
+      <p class="hm-step-t">The store composes</p>
+      <p class="hm-step-d">A stylist reads the situation, picks from the real catalogue, and builds a page for it. About fifteen seconds.</p>
+    </div>
+    <div class="hm-step">
+      <p class="hm-step-n">03</p>
+      <p class="hm-step-t">You keep going</p>
+      <p class="hm-step-d">“Flats instead.” “Something for the reception.” The layout rearranges around each turn.</p>
+    </div>
+  </div>
+
+  <p class="hm-ask">Start a conversation</p>
+  <p class="hm-ask-sub">Pick one and the store builds itself — nothing to type.</p>
+
+  <div class="hm-intents" id="hm-intents"></div>
+
+  <div class="hm-demo" id="hm-demo">
+    <p class="hm-intent-tag">Guided demo · six beats</p>
+    <p class="hm-demo-title" id="hm-demo-title"></p>
+    <p class="hm-demo-premise" id="hm-demo-premise"></p>
+    <ol class="hm-demo-steps">
+      <li>
+        <b>Open the store.</b> Beat one is delivered on the way in, so the opening look
+        composes as it loads.<br>
+        <a class="hm-submit hm-demo-go" id="hm-demo-go" href="#">1 · Open the storefront</a>
+      </li>
+      <li>
+        <b>Copy the prompt.</b> It carries the operating rules, what this kind of store is,
+        and all six beats.<br>
+        <button class="hm-submit" type="button" id="hm-demo-copy">2 · Copy the agent prompt</button>
+      </li>
+      <li>
+        <b>Paste it into your agent</b>, with the storefront as the active tab. Browser agents
+        only act when a person starts them, so nothing runs until you do this.
+      </li>
+    </ol>
+    <p class="hm-demo-note">
+      Or drive it by hand: say each line below in the store's own composer, one at a time.
+    </p>
+    <ol class="hm-demo-beats" id="hm-demo-beats"></ol>
+  </div>
+
+  <div class="hm-other">
+    <p class="hm-intent-tag">Something else</p>
+    <p class="hm-intent-text" style="margin-bottom:0">Tell it what you're actually doing.</p>
+    <form class="hm-other-row" id="hm-other-form">
+      <input class="hm-input" id="hm-other-input" type="text" autocomplete="off"
+             placeholder="I'm in a wedding party in October and the dress is emerald green…"
+             aria-label="Describe what you are shopping for">
+      <button class="hm-submit" type="submit">Build my store</button>
+    </form>
+  </div>
+
+  <div class="hm-foot">
+    <p>
+      <b>Agents welcome.</b> This page and the storefront both declare their tools on
+      <code>navigator.modelContext</code>, so an agent can do all of the above without a browser
+      driver. Here, <code>list_intents</code> and <code>start_shopping</code>; on the storefront,
+      <code>send_message</code> and the rest of the surface. Start with
+      <code>how_to_use_this_site</code> — it explains what this kind of store is and how to drive it.
+    </p>
+    <p>
+      The panel in the corner lists every registered tool and logs each call as it lands, so the
+      protocol is visible without an agent attached. Run <code>PlaygroundWebMCP.selfCheck()</code>
+      in the console to see exactly which instructions reach an agent, and how.
+      The same guide is served at <a href="/llms.txt">/llms.txt</a>.
+    </p>
+  </div>
+</div>
+
+<!--
+  Every script is classic and un-deferred, so execution order is exactly source
+  order. That matters: the instrumented host must be installed before anything
+  can call registerTool. `type="module"` implies defer and would break it.
+-->
+<script src="/assets/config.js"></script>
+<script src="/assets/intents.js"></script>
+<script src="/assets/demo-script.js"></script>
+<script src="/assets/ams-guide.js"></script>
+<script src="/assets/operator-prompt.js"></script>
+<script src="/assets/webmcp-host.js"></script>
+<script src="/assets/inspector.js"></script>
+<script src="/assets/home-boot.js"></script>
+</body>
+</html>

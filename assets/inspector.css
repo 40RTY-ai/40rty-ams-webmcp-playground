@@ -1,0 +1,157 @@
+/*
+ * Tool inspector chrome. Self-contained and namespaced (`pgi-`): the AMS embed
+ * renders inside a shadow root with its own bundled stylesheet, so nothing here
+ * can reach it and nothing it ships can reach this. No framework, no fonts to
+ * fetch — the panel must render on a cold machine with no network beyond the
+ * embed itself.
+ */
+
+.pgi {
+  --pgi-bg: #0b1020;
+  --pgi-bg-soft: #121a30;
+  --pgi-line: rgba(255, 255, 255, 0.12);
+  --pgi-text: #e8ecf5;
+  --pgi-dim: #93a0bd;
+  --pgi-ok: #34d399;
+  --pgi-run: #fbbf24;
+  --pgi-err: #f87171;
+
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2147483000;
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  max-height: min(70vh, 620px);
+  display: flex;
+  flex-direction: column;
+  background: var(--pgi-bg);
+  color: var(--pgi-text);
+  border: 1px solid var(--pgi-line);
+  border-radius: 12px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  font: 12px/1.5 "Inconsolata", ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow: hidden;
+}
+
+/* Which side the panel docks to. The AMS space renders its own composer rail on
+ * the right, so the default covers the one surface this demo deliberately does
+ * not use — the shopper types in the agent, not on the site. `?inspector=left`
+ * moves it over the product grid instead when a shot needs that rail visible. */
+.pgi--left { left: 16px; right: auto; }
+
+.pgi--collapsed { max-height: none; }
+.pgi--collapsed .pgi-body { display: none; }
+
+.pgi-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--pgi-bg-soft);
+  border-bottom: 1px solid var(--pgi-line);
+  cursor: pointer;
+  user-select: none;
+}
+.pgi--collapsed .pgi-head { border-bottom: none; }
+
+.pgi-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pgi-ok);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18);
+  flex: none;
+}
+.pgi-dot--warn { background: var(--pgi-err); box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.18); }
+
+.pgi-title { font-weight: 600; letter-spacing: 0.01em; }
+.pgi-mode {
+  margin-left: auto;
+  padding: 2px 6px;
+  border: 1px solid var(--pgi-line);
+  border-radius: 999px;
+  color: var(--pgi-dim);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.pgi-caret { color: var(--pgi-dim); flex: none; }
+
+.pgi-body { display: flex; flex-direction: column; min-height: 0; }
+
+.pgi-tabs { display: flex; border-bottom: 1px solid var(--pgi-line); }
+.pgi-tab {
+  flex: 1;
+  padding: 8px 10px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--pgi-dim);
+  font: inherit;
+  cursor: pointer;
+}
+.pgi-tab[aria-selected="true"] { color: var(--pgi-text); border-bottom-color: var(--pgi-ok); }
+
+.pgi-scroll { overflow-y: auto; padding: 8px; min-height: 0; }
+
+.pgi-empty { padding: 14px 10px; color: var(--pgi-dim); }
+
+/* --- tools --- */
+.pgi-tool { border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.pgi-tool:last-child { border-bottom: none; }
+.pgi-tool > summary {
+  padding: 6px 4px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+.pgi-tool > summary::-webkit-details-marker { display: none; }
+.pgi-tool-name { color: var(--pgi-ok); }
+.pgi-tool-hint { color: var(--pgi-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pgi-tool-detail { padding: 0 4px 8px; color: var(--pgi-dim); }
+.pgi-tool-detail p { margin: 0 0 6px; }
+
+/* --- calls --- */
+.pgi-call { border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding: 6px 4px; }
+.pgi-call:last-child { border-bottom: none; }
+.pgi-call-top { display: flex; gap: 6px; align-items: baseline; }
+.pgi-call-name { color: var(--pgi-text); }
+.pgi-call-src { color: var(--pgi-dim); font-size: 10px; }
+.pgi-call-ms { margin-left: auto; color: var(--pgi-dim); white-space: nowrap; }
+.pgi-call--ok .pgi-call-name { color: var(--pgi-ok); }
+.pgi-call--running .pgi-call-name { color: var(--pgi-run); }
+.pgi-call--error .pgi-call-name { color: var(--pgi-err); }
+
+.pgi-kv { margin: 4px 0 0; color: var(--pgi-dim); word-break: break-all; white-space: pre-wrap; }
+.pgi-kv b { color: #cbd5e1; font-weight: 600; }
+
+/* --- footer --- */
+.pgi-foot {
+  border-top: 1px solid var(--pgi-line);
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: var(--pgi-bg-soft);
+}
+.pgi-btn {
+  padding: 6px 9px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--pgi-text);
+  border: 1px solid var(--pgi-line);
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.pgi-btn:hover { background: rgba(255, 255, 255, 0.12); }
+.pgi-btn--wide { flex: 1 1 100%; }
+.pgi-btn--done { border-color: var(--pgi-ok); color: var(--pgi-ok); }
+
+@media (max-width: 520px) {
+  .pgi { left: 12px; right: 12px; bottom: 12px; width: auto; max-height: 56vh; }
+}
