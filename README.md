@@ -2,17 +2,30 @@
 
 **WebMCP lets an agent act on a page. AMS gives it something worth building.**
 
+### Try it — no install, no login
+
+**→ [app.40rty.ai/stevemadden?webmcp=1](https://app.40rty.ai/stevemadden?webmcp=1)**
+
+Open it in ChatGPT's browser or Codex, copy the prompt from the overlay, and paste
+it into your agent with that tab active. The storefront declares 16 tools on
+`navigator.modelContext`; the prompt runs a five-beat demo that rebuilds the store
+three times.
+
+### Or run this repo, which adds a tool inspector
+
 ```bash
-git clone git@github.com:40RTY-ai/40rty-ams-webmcp-playground.git
+git clone https://github.com/40RTY-ai/40rty-ams-webmcp-playground
 cd 40rty-ams-webmcp-playground
-node scripts/serve.mjs
+node scripts/serve.mjs        # → http://localhost:4040
 ```
 
-Then open **http://localhost:4040**, copy the prompt from the overlay, and paste
-it into your agent with that tab active.
+Same storefront, served through a local proxy so this repo's chrome can run on it:
+a **panel that lists every registered tool and logs every call as it lands**, plus
+`how_to_use_this_site` and `get_demo_script` alongside the store's own 16 — 19 tools
+on one document. That panel is the protocol made visible, and it is the reason to
+clone rather than just open the link.
 
-No install, no build, no dependencies, no API keys. Node is the only requirement,
-and it is used to serve one page.
+No build, no dependencies, no API keys. Node only.
 
 ---
 
